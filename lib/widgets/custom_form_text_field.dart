@@ -1,0 +1,35 @@
+import 'package:flutter/material.dart';
+
+class CustomFormTextField extends StatelessWidget {
+  CustomFormTextField({this.hintText, this.labelText, this.onChanged, this.obscureText = false});
+
+  void Function(String)? onChanged;
+  String? hintText;
+  String? labelText;
+bool? obscureText;
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      obscureText: obscureText!,
+      validator: (data) {
+        if(data!.isEmpty){
+          return 'field is required';
+        }
+      },
+      onChanged: onChanged,
+      decoration: InputDecoration(
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 16,
+          vertical: 32,
+        ),
+        border: const OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.blueAccent),
+        ),
+        hintText: hintText,
+        labelText: labelText,
+        labelStyle: const TextStyle(color: Colors.white),
+        hintStyle: const TextStyle(color: Colors.white),
+      ),
+    );
+  }
+}
