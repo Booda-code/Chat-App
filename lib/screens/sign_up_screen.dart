@@ -1,10 +1,9 @@
 import 'package:chat_app_fixed/constant.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:chat_app_fixed/cubits/register_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import '../cubits/sign_cubit.dart';
-import '../cubits/sign_cubit_states.dart';
+import '../cubits/sign_register_cubit_states.dart';
 import '../helper/show_snack_bar.dart';
 import '../widgets/custom_text_button.dart';
 import '../widgets/custom_form_text_field.dart';
@@ -28,8 +27,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => SignCubit(),
-      child: BlocBuilder<SignCubit, SignCubitStates>(
+      create: (context) => RegisterCubit(),
+      child: BlocBuilder<RegisterCubit, SignRegisterCubitStates>(
         builder: (context, state) {
           isLoading = state is SignLoadingState;
 
@@ -97,13 +96,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       CustomTextButton(
                         onPressed: () {
                           if (formKey.currentState!.validate()) {
-                            BlocProvider.of<SignCubit>(context).signUser(
+                            BlocProvider.of<RegisterCubit>(context).registerUser(
                               email: email!,
                               password: password!,
                             );
                           }
-                          var cubit = BlocProvider.of<SignCubit>(context);
-                          cubit.signUser(email: email!, password: password!);
                         },
                         text: 'Sign Up',
                       ),

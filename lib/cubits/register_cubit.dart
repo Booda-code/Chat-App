@@ -2,13 +2,13 @@ import 'package:chat_app_fixed/cubits/sign_register_cubit_states.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class SignCubit extends Cubit<SignRegisterCubitStates>{
-  SignCubit() : super(SignInitialState());
+class RegisterCubit extends Cubit<SignRegisterCubitStates>{
+  RegisterCubit() : super(SignInitialState());
 
-  signUser({required String email, required String password}) async{
+  registerUser({required String email, required String password}) async{
     emit(SignLoadingState());
     try{
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
