@@ -1,5 +1,5 @@
 import 'package:chat_app_fixed/cubits/sign_cubit.dart';
-import 'package:chat_app_fixed/cubits/sign_register_cubit_states.dart';
+import 'package:chat_app_fixed/cubits/sign_cubit_states.dart';
 import 'package:chat_app_fixed/screens/sign_up_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,7 +29,7 @@ class _SignInScreenState extends State<SignInScreen> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => SignCubit(),
-      child: BlocBuilder<SignCubit, SignRegisterCubitStates>(
+      child: BlocBuilder<SignCubit, SignCubitStates>(
         builder: (context, state) {
 
           isLoading = state is SignLoadingState;
